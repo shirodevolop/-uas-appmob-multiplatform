@@ -7,14 +7,13 @@ class ApiService {
 
   Future<List<News>> getNews() async {
     final response = await get(Uri.tryParse(endPointUrl));
-
     if (response.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(response.body);
       List<dynamic> body = json['berita'];
       List<News> berita = body.map((item) => News.fromJson(item)).toList();
-      return news;
+      return berita;
     } else {
-      throw Exception("Can't get the News!");
+      throw Exception("Berita Tidak ditemukan !");
     }
   }
 }
